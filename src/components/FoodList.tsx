@@ -1,4 +1,5 @@
 import React from 'react';
+import { List, ListItem, ListItemText, IconButton, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Food {
@@ -21,19 +22,20 @@ const FoodList: React.FC<FoodListProps> = ({ foods, mealType, handleDeleteFood }
     const filteredFoods = foods.filter(food => food.mealType === mealType);
 
     return (
-        <div>
-            <h2 className="text-2xl font-bold mb-2">{mealType}</h2>
-            <ul>
+        <Box>
+            <List>
                 {filteredFoods.map(food => (
-                    <li key={food._id} className="border p-2 mb-2">
-                        {food.name} - {food.protein}g Protein, {food.carbs}g Carbs, {food.fats}g Fats, {food.calories} Calories
-                        <button onClick={() => handleDeleteFood(food._id!)} className="bg-blue-500 text-white p-2 ml-2">
+                    <ListItem key={food._id} sx={{ border: 1, mb: 2 }}>
+                        <ListItemText
+                            primary={`${food.name} - ${food.protein}g Protein, ${food.carbs}g Carbs, ${food.fats}g Fats, ${food.calories} Calories`}
+                        />
+                        <IconButton onClick={() => handleDeleteFood(food._id!)}>
                             <DeleteIcon />
-                        </button>
-                    </li>
+                        </IconButton>
+                    </ListItem>
                 ))}
-            </ul>
-        </div>
+            </List>
+        </Box>
     );
 };
 

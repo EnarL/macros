@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextField, Button, Box, MenuItem } from '@mui/material';
 
 interface Food {
     name: string;
@@ -11,58 +12,63 @@ interface Food {
 
 interface FoodFormProps {
     newFood: Food;
-    handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     handleAddFood: () => void;
 }
 
 const FoodForm: React.FC<FoodFormProps> = ({ newFood, handleInputChange, handleAddFood }) => {
     return (
-        <div className="mb-4">
-            <input
-                type="text"
+        <Box sx={{ mb: 4 }}>
+            <TextField
+                label="Name"
                 name="name"
                 value={newFood.name}
                 onChange={handleInputChange}
-                placeholder="Name"
-                className="border p-2 mr-2"
+                variant="outlined"
+                sx={{ mr: 2, mb: 2, '& .MuiInputBase-input': { color: '#ffffff' } }}
             />
-            <input
-                type="text"
+            <TextField
+                label="Protein"
                 name="protein"
                 value={newFood.protein}
                 onChange={handleInputChange}
-                placeholder="Protein"
-                className="border p-2 mr-2"
+                variant="outlined"
+                sx={{ mr: 2, mb: 2, '& .MuiInputBase-input': { color: '#ffffff' } }}
             />
-            <input
-                type="text"
+            <TextField
+                label="Carbs"
                 name="carbs"
                 value={newFood.carbs}
                 onChange={handleInputChange}
-                placeholder="Carbs"
-                className="border p-2 mr-2"
+                variant="outlined"
+                sx={{ mr: 2, mb: 2, '& .MuiInputBase-input': { color: '#ffffff' } }}
             />
-            <input
-                type="text"
+            <TextField
+                label="Fats"
                 name="fats"
                 value={newFood.fats}
                 onChange={handleInputChange}
-                placeholder="Fats"
-                className="border p-2 mr-2"
+                variant="outlined"
+                sx={{ mr: 2, mb: 2, '& .MuiInputBase-input': { color: '#ffffff' } }}
             />
-            <select
+            <TextField
+                select
+                label="Meal Type"
                 name="mealType"
                 value={newFood.mealType}
                 onChange={handleInputChange}
-                className="border p-2 mr-2"
+                variant="outlined"
+                sx={{ mr: 2, mb: 2, '& .MuiInputBase-input': { color: '#ffffff' } }}
             >
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snacks">Snacks</option>
-            </select>
-            <button onClick={handleAddFood} className="bg-blue-500 text-white p-2">Add Food</button>
-        </div>
+                <MenuItem value="Breakfast">Breakfast</MenuItem>
+                <MenuItem value="Lunch">Lunch</MenuItem>
+                <MenuItem value="Dinner">Dinner</MenuItem>
+                <MenuItem value="Snacks">Snacks</MenuItem>
+            </TextField>
+            <Button onClick={handleAddFood} variant="contained" color="primary">
+                Add Food
+            </Button>
+        </Box>
     );
 };
 

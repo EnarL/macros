@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography, Box } from '@mui/material';
 
 interface Food {
     protein: number;
@@ -10,24 +11,23 @@ interface Food {
 
 interface FoodSummaryProps {
     foods: Food[];
-    mealType: 'Breakfast' | 'Lunch' | 'Dinner' | 'Snacks';
+    mealType?: 'Breakfast' | 'Lunch' | 'Dinner' | 'Snacks';
 }
 
 const FoodSummary: React.FC<FoodSummaryProps> = ({ foods, mealType }) => {
-    const filteredFoods = foods.filter(food => food.mealType === mealType);
+    const filteredFoods = mealType ? foods.filter(food => food.mealType === mealType) : foods;
     const totalProtein = filteredFoods.reduce((sum, food) => sum + food.protein, 0);
     const totalCarbs = filteredFoods.reduce((sum, food) => sum + food.carbs, 0);
     const totalFats = filteredFoods.reduce((sum, food) => sum + food.fats, 0);
     const totalCalories = filteredFoods.reduce((sum, food) => sum + food.calories, 0);
 
     return (
-        <div className="border p-2 mb-4">
-            <h3 className="text-xl font-bold">Summary for {mealType}</h3>
-            <p>Protein: {totalProtein}g</p>
-            <p>Carbs: {totalCarbs}g</p>
-            <p>Fats: {totalFats}g</p>
-            <p>Calories: {totalCalories}</p>
-        </div>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography>Protein: {totalProtein}g</Typography>
+            <Typography>Carbs: {totalCarbs}g</Typography>
+            <Typography>Fats: {totalFats}g</Typography>
+            <Typography>Calories: {totalCalories}</Typography>
+        </Box>
     );
 };
 
