@@ -1,6 +1,8 @@
-#Macro tracker
+# Macro tracker
 
-##Technologies Used
+simple macro tracker for personal use. (without authentication)
+
+## Technologies Used
 - React
 - TypeScript
 - Vite
